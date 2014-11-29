@@ -1,0 +1,37 @@
+.container
+    .col-md-2
+    .well.col-md-8
+        form.form-horizontal(name="signUpForm")
+            fieldset
+                legend Create New User
+                .form-group
+                    label.col-md-2.control-label(for="first-name") First Name
+                    .col-md-10
+                        input.form-control(id="first-name", type="text", placeholder="First Name", ng-model="user.firstName", required)
+                .form-group
+                    label.col-md-2.control-label(for="last-name") Last Name
+                    .col-md-10
+                        input.form-control(id="last-name", type="text", placeholder="Last Name", ng-model="user.lastName", required)
+                .form-group
+                    label.col-md-2.control-label(for="username") Username
+                    .col-md-10
+                        input.form-control(id="username", type="text", placeholder="Username", ng-model="user.username", required)
+                .form-group
+                    label.col-md-2.control-label(for="password") Password
+                    .col-md-10
+                        input.form-control(id="password", type="password", placeholder="Password", ng-model="user.password", required)
+                .form-group
+                    label.col-md-2.control-label(for="confirm-password") Confirm password
+                    .col-md-10
+                        input.form-control(id="confirm-password", type="password", placeholder="Password", ng-model="user.confirmPassword", required)
+                .form-group
+                    label.col-md-2.control-label(for="city") City
+                    .col-md-10
+                        input.form-control(id="city", type="text", placeholder="City", ng-model="user.city")
+                .form-group
+                    label.col-md-2.control-label(for="phone") Phone
+                    .col-md-10
+                        input.form-control(id="phone", type="text", placeholder="Phone", ng-model="user.phone")
+                .pull-right
+                    button.btn.btn-primary(ng-click="signup(user)", ng-disabled="signUpForm.$invalid") Create
+                    a.btn.btn-primary(href="#/") Cancel

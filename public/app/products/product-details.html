@@ -1,0 +1,24 @@
+
+<div class="container">
+  <div class="col-md-1"></div>
+  <div class="well col-md-10 well-lg">
+    <div class="row">
+      <h3 class="col-md-10">{{ product.name }}</h3>
+      <div class="col-md-2"><a href="#/products/{{ product._id }}/comment" class="btn btn-primary">Add comment</a></div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <p><b>Seller:</b><span class="pull-right">{{ product.seller.username }}</span></p>
+        <p><b>Price:</b><span class="pull-right">{{ product.price | number: 2 }}</span></p>
+        <p><b>Published on:</b><span class="pull-right">{{ product.published | date: 'dd.MM.yyyy HH:mm' }}</span></p>
+        <p><b>Description:</b></p><span class="pull-right">{{ product.description }}</span>
+      </div>
+      <div class="col-md-6 text-center"><img src="/pictures/{{ product.image }}" width="50%"/></div>
+    </div>
+    <div class="bs-component">
+      <div class="list-group"><a ng-repeat="comment in product.comments" href="" class="list-group-item">
+          <p class="list-group-item-heading"><b>Title:</b> {{ comment.title }}<em class="pull-right">({{ comment.published | date: 'dd.MM.yyyy HH:mm' }})</em></p>
+          <p class="list-group-item-text"><b>Comment:</b> {{ comment.content }}</p></a></div>
+    </div>
+  </div>
+</div>

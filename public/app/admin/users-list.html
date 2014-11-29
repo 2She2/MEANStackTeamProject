@@ -1,0 +1,47 @@
+
+<div ng-controller="UserListCtrl" class="container">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-3">
+        <p class="text-center">Sort by</p>
+        <select ng-model="filterData.orderBy" class="form-control">
+          <option value="username" ng-selected="'true'" selected="selected">Username</option>
+          <option value="firstName">First name</option>
+          <option value="lastName">Last name</option>
+          <option value="dateRegistered">Date registered</option>
+          <option value="city">City</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <p class="text-center">Order</p>
+        <select ng-model="filterData.orderType" class="form-control">
+          <option value="desc" ng-selected="'true'" selected="selected">Descending</option>
+          <option value="asc">Ascending</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <p class="text-center">Page number</p>
+        <input type="number" ng-model="pageNumber" value="1" min="1" class="form-control input-sm"/>
+      </div>
+      <div class="col-md-3">
+        <p></p>
+        <button ng-click="loadFilteredUsers(pageNumber, filterData)" class="col-md-12 btn btn-primary btn-lg pull-right">Filter</button>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        <h3 class="panel-title col-md-3">First name</h3>
+        <h3 class="panel-title col-md-3">Last name</h3>
+        <h3 class="panel-title col-md-3">Username</h3>
+        <h3 class="panel-title col-md-2">City</h3>
+      </div>
+      <div ng-repeat="user in users" class="panel-body">
+        <div class="col-md-3">{{ user.firstName }}</div>
+        <div class="col-md-3">{{ user.lastName }}</div>
+        <div class="col-md-3"><a href="#/users/{{ user._id }}">{{ user.username }}</a></div>
+        <div class="col-md-2">{{ user.city }}</div><a ng-show="isAuthorizedAdmin" ng-click="toggleBan(user._id)" href="" target="_self" class="btn btn-primary col-md-1">Ban</a>
+      </div>
+    </div>
+  </div>
+</div>

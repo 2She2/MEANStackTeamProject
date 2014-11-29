@@ -1,0 +1,35 @@
+.container(ng-controller="ProductsListCtrl")
+    .col-md-1
+    .col-md-10
+        .row
+            .col-md-3
+                p.text-center Sort by
+                select.form-control(ng-model="filterData.orderBy")
+                    option(value="name" ng-selected="'true'" selected) Name
+                    option(value="price") Price
+                    option(value="published") Published on
+                    option(value="seller.username") Seller
+            .col-md-3
+                p.text-center Order
+                select.form-control(ng-model="filterData.orderType")
+                    option(value="desc" ng-selected="'true'" selected) Descending
+                    option(value="asc") Ascending
+            .col-md-3
+                p.text-center Page number
+                input.form-control.input-sm(type="number" ng-model="pageNumber" value="1" min="1")
+            .col-md-3
+                p
+                a.col-md-6.btn.btn-primary.btn-lg.pull-right(ng-click="loadFilteredProducts(pageNumber, filterData)") Filter
+                a.col-md-6.btn.btn-primary.btn-lg.pull-right(href="#/products/new") Add
+            //button.col-md-12.btn.btn-primary.btn-lg.pull-right(ng-click="loadFilteredUsers(pageNumber, filterData)") Filter
+        .panel.panel-default
+            .panel-heading.clearfix
+                h3.panel-title.col-md-3.text-center Product name
+                h3.panel-title.col-md-3.text-center Price
+                h3.panel-title.col-md-3.text-center Seller
+                h3.panel-title.col-md-3.text-center Published on
+            .panel-body(ng-repeat='product in products')
+                .col-md-3.text-center: a(href="#/products/{{ product._id }}") {{ product.name }}
+                .col-md-3.text-right {{ product.price | number: 2 }}
+                .col-md-3.text-center: a(href="#/users/{{ product.seller._id }}") {{ product.seller.username }}
+                .col-md-2.text-center {{ product.published | date: 'dd.MM.yyyy' }}

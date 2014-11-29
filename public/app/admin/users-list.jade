@@ -1,0 +1,35 @@
+.container(ng-controller="UserListCtrl")
+    .col-md-1
+    .col-md-10
+        .row
+            .col-md-3
+                p.text-center Sort by
+                select.form-control(ng-model="filterData.orderBy")
+                    option(value="username" ng-selected="'true'" selected) Username
+                    option(value="firstName") First name
+                    option(value="lastName") Last name
+                    option(value="dateRegistered") Date registered
+                    option(value="city") City
+            .col-md-3
+                p.text-center Order
+                select.form-control(ng-model="filterData.orderType")
+                    option(value="desc" ng-selected="'true'" selected) Descending
+                    option(value="asc") Ascending
+            .col-md-3
+                p.text-center Page number
+                input.form-control.input-sm(type="number" ng-model="pageNumber" value="1" min="1")
+            .col-md-3
+                p
+                button.col-md-12.btn.btn-primary.btn-lg.pull-right(ng-click="loadFilteredUsers(pageNumber, filterData)") Filter
+        .panel.panel-default
+            .panel-heading.clearfix
+                h3.panel-title.col-md-3 First name
+                h3.panel-title.col-md-3 Last name
+                h3.panel-title.col-md-3 Username
+                h3.panel-title.col-md-2 City
+            .panel-body(ng-repeat='user in users')
+                .col-md-3 {{ user.firstName }}
+                .col-md-3 {{ user.lastName }}
+                .col-md-3: a(href="#/users/{{ user._id }}") {{ user.username }}
+                .col-md-2 {{ user.city }}
+                a.btn.btn-primary.col-md-1(ng-show="isAuthorizedAdmin" ng-click="toggleBan(user._id)" href="" target="_self") Ban

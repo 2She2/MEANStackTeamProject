@@ -1,0 +1,41 @@
+.container(ng-controller="ProductsAdminCtrl")
+    .col-md-1
+    .col-md-10
+        .row
+            .col-md-3
+                p.text-center Sort by
+                select.form-control(ng-model="filterData.orderBy")
+                    option(value="name" ng-selected="true" selected) Name
+                    option(value="price") Price
+                    option(value="published") Published on
+                    option(value="seller.username") Seller
+            .col-md-3
+                p.text-center Order
+                select.form-control(ng-model="filterData.orderType")
+                    option(value="desc" ng-selected="true" selected) Descending
+                    option(value="asc") Ascending
+            .col-md-3
+                p.text-center Page number
+                input.form-control.input-sm(type="number" ng-model="pageNumber" value="1" min="1")
+            .col-md-3
+                p
+                button.col-md-12.btn.btn-primary.btn-lg.pull-right(ng-click="loadFilteredProducts(pageNumber, filterData)") Filter
+        .panel.panel-default
+            .panel-heading.clearfix
+                h3.panel-title.col-md-2.text-center Product name
+                h3.panel-title.col-md-2.text-center Price
+                h3.panel-title.col-md-2.text-center Seller
+                h3.panel-title.col-md-2.text-center Published on
+                h3.panel-title.col-md-2.text-center Approved
+                h3.panel-title.col-md-2.text-center Sold
+            .panel-body(ng-repeat='product in products')
+                .col-md-2.text-center: a(href="#/products/{{ product._id }}") {{ product.name }}
+                .col-md-2.text-right {{ product.price | number: 2 }}
+                .col-md-2.text-center: a(href="#/users/{{ product.seller._id }}") {{ product.seller.username }}
+                .col-md-2.text-center {{ product.published | date: 'dd.MM.yyyy' }}
+                .col-md-2.text-center
+                    button.btn.btn-primary.btn-sm(ng-show="!product.approved" ng-click="approve(product)") Approve
+                    span(ng-show="product.approved") Approved
+                .col-md-2.text-center
+                    button.btn.btn-primary.btn-sm(ng-show="!product.sold" ng-click="sold(product)")  Sold
+                    span(ng-show="product.sold") Sold

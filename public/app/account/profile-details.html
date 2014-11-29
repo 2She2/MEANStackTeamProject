@@ -1,0 +1,21 @@
+
+<div ng-controller="ProfileDetailsCtrl" class="container">
+  <div class="col-md-1"></div>
+  <div class="well col-md-10 well-lg">
+    <div class="row">
+      <h3 class="col-md-10">{{ user.username }}<span ng-show="user.isBanned"> [BANNED]</span></h3>
+      <div class="col-md-2"><a ng-show="currentUser._id === user._id" href="#/profile" class="btn btn-primary">Edit</a><a ng-show="isAuthorizedAdmin" ng-click="toggleBan()" class="btn btn-primary">{{ banToggleTitle }}</a><a ng-show="currentUser._id !== user._id" href="#/users/{{ user._id }}/message" class="btn btn-primary">Message</a></div>
+    </div>
+    <p><span ng-if="user.roles" ng-repeat="role in user.roles"> {{ role }}</span></p>
+    <div class="row">
+      <p class="col-md-4"><b>Full name:</b> {{ user.firstName + ' ' + user.lastName }}</p>
+      <p class="col-md-4"><b>City:</b> {{ user.city }}</p>
+      <p class="col-md-4"><b>Phone:</b> {{ user.phone }}</p>
+    </div>
+    <div class="bs-component">
+      <div ng-show="currentUser._id === user._id || isAuthorizedAdmin" class="list-group"><a ng-repeat="message in user.messages" href="#/users/{{ message.from.userId }}" class="list-group-item">
+          <p class="list-group-item-heading"><b>from:</b> {{ message.from.username }}<em class="pull-right">({{ message.dateSent | date: 'dd.MM.yyyy HH:mm' }})</em></p>
+          <p class="list-group-item-text"><b>message:</b> {{ message.content }}</p></a></div>
+    </div>
+  </div>
+</div>

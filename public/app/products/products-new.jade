@@ -1,0 +1,29 @@
+.container
+    .col-md-2
+    .well.col-md-8
+        form.form-horizontal(name="addProduct",id="addProduct", action="/api/products" ,method="post", enctype="multipart/form-data")
+            fieldset
+                legend Add new product
+                .form-group
+                    label.col-md-2.control-label(for="name") Name
+                    .col-md-10
+                        input.form-control(type="text", placeholder="Name", name="name", ng-model="product.name", required)
+                .form-group
+                    label.col-md-2.control-label(for="description") Description
+                    .col-md-10
+                        input.form-control(type="text", placeholder="Description", ng-model="product.description", required)
+                .form-group
+                    label.col-md-2.control-label(for="image") Image
+                    .col-md-10
+                        label.btn(for="image")
+                            input(type="file", name="image" ng-model="product.file")
+                .form-group
+                    label.col-md-2.control-label(for="price") Price
+                    .col-md-10
+                        input.form-control(type="text", placeholder="Price", name="price", ng-model="product.price", valid-number, required)
+                        input.form-control(type="hidden", name="username", id="username", ng-model="product.user")
+
+                .pull-right
+                    button.btn.btn-primary(ng-click="upload(product)", ng-disabled="addProduct.$invalid") Create
+                    a.btn.btn-primary(href="#/") Cancel
+

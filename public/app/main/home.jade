@@ -1,0 +1,11 @@
+.container
+    .jumbotron
+        h1 Iris Online Shop
+        h2 My market is much better than your market!
+    .panel.panel-default
+        .panel-heading.text-center.clearfix: h4 New Products
+        .panel-body(ng-repeat='product in products')
+            .col-md-3.text-center: a(href="#/products/{{ product._id }}") {{ product.name }}
+            .col-md-3.text-center {{ product.price | number: 2 }}
+            .col-md-3.text-center: a(href="#/users/{{ product.seller._id }}") {{ product.seller.username }}
+            .col-md-3.text-center {{ product.published | date: 'dd.MM.yyyy' }}

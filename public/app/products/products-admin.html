@@ -1,0 +1,54 @@
+
+<div ng-controller="ProductsAdminCtrl" class="container">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-3">
+        <p class="text-center">Sort by</p>
+        <select ng-model="filterData.orderBy" class="form-control">
+          <option value="name" ng-selected="true" selected="selected">Name</option>
+          <option value="price">Price</option>
+          <option value="published">Published on</option>
+          <option value="seller.username">Seller</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <p class="text-center">Order</p>
+        <select ng-model="filterData.orderType" class="form-control">
+          <option value="desc" ng-selected="true" selected="selected">Descending</option>
+          <option value="asc">Ascending</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <p class="text-center">Page number</p>
+        <input type="number" ng-model="pageNumber" value="1" min="1" class="form-control input-sm"/>
+      </div>
+      <div class="col-md-3">
+        <p></p>
+        <button ng-click="loadFilteredProducts(pageNumber, filterData)" class="col-md-12 btn btn-primary btn-lg pull-right">Filter</button>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        <h3 class="panel-title col-md-2 text-center">Product name</h3>
+        <h3 class="panel-title col-md-2 text-center">Price</h3>
+        <h3 class="panel-title col-md-2 text-center">Seller</h3>
+        <h3 class="panel-title col-md-2 text-center">Published on</h3>
+        <h3 class="panel-title col-md-2 text-center">Approved</h3>
+        <h3 class="panel-title col-md-2 text-center">Sold</h3>
+      </div>
+      <div ng-repeat="product in products" class="panel-body">
+        <div class="col-md-2 text-center"><a href="#/products/{{ product._id }}">{{ product.name }}</a></div>
+        <div class="col-md-2 text-right">{{ product.price | number: 2 }}</div>
+        <div class="col-md-2 text-center"><a href="#/users/{{ product.seller._id }}">{{ product.seller.username }}</a></div>
+        <div class="col-md-2 text-center">{{ product.published | date: 'dd.MM.yyyy' }}</div>
+        <div class="col-md-2 text-center">
+          <button ng-show="!product.approved" ng-click="approve(product)" class="btn btn-primary btn-sm">Approve</button><span ng-show="product.approved">Approved</span>
+        </div>
+        <div class="col-md-2 text-center">
+          <button ng-show="!product.sold" ng-click="sold(product)" class="btn btn-primary btn-sm"> Sold</button><span ng-show="product.sold">Sold</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

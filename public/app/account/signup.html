@@ -1,0 +1,56 @@
+
+<div class="container">
+  <div class="col-md-2"></div>
+  <div class="well col-md-8">
+    <form name="signUpForm" class="form-horizontal">
+      <fieldset>
+        <legend>Create New User</legend>
+        <div class="form-group">
+          <label for="first-name" class="col-md-2 control-label">First Name</label>
+          <div class="col-md-10">
+            <input id="first-name" type="text" placeholder="First Name" ng-model="user.firstName" required="required" class="form-control"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="last-name" class="col-md-2 control-label">Last Name</label>
+          <div class="col-md-10">
+            <input id="last-name" type="text" placeholder="Last Name" ng-model="user.lastName" required="required" class="form-control"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="username" class="col-md-2 control-label">Username</label>
+          <div class="col-md-10">
+            <input id="username" type="text" placeholder="Username" ng-model="user.username" required="required" class="form-control"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="col-md-2 control-label">Password</label>
+          <div class="col-md-10">
+            <input id="password" type="password" placeholder="Password" ng-model="user.password" required="required" class="form-control"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="confirm-password" class="col-md-2 control-label">Confirm password</label>
+          <div class="col-md-10">
+            <input id="confirm-password" type="password" placeholder="Password" ng-model="user.confirmPassword" required="required" class="form-control"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="city" class="col-md-2 control-label">City</label>
+          <div class="col-md-10">
+            <input id="city" type="text" placeholder="City" ng-model="user.city" class="form-control"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phone" class="col-md-2 control-label">Phone</label>
+          <div class="col-md-10">
+            <input id="phone" type="text" placeholder="Phone" ng-model="user.phone" class="form-control"/>
+          </div>
+        </div>
+        <div class="pull-right">
+          <button ng-click="signup(user)" ng-disabled="signUpForm.$invalid" class="btn btn-primary">Create</button><a href="#/" class="btn btn-primary">Cancel</a>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

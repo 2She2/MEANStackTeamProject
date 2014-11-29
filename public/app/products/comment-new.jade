@@ -1,0 +1,17 @@
+.container
+    .col-md-2
+    .well.col-md-8
+        form.form-horizontal(name="commentForm")
+            fieldset
+                legend Add comment
+                .form-group
+                    label.col-md-2.control-label(for="comment-title") Title
+                    .col-md-10
+                        input.form-control(id="comment-title" type="text", placeholder="Title", ng-model="comment.title", required)
+                .form-group
+                    label.col-md-2.control-label(for="comment-content") Content
+                    .col-md-10
+                        input.form-control(id="comment-content" type="text", placeholder="Content", ng-model="comment.content", required)
+                .pull-right
+                    button.btn.btn-primary(ng-click="addComment(comment)", ng-disabled="commentForm.$invalid") Create
+                    a.btn.btn-primary(href="#/") Cancel

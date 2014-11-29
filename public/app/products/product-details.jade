@@ -1,0 +1,32 @@
+.container
+    .col-md-1
+    .well.col-md-10.well-lg
+        .row
+            h3.col-md-10 {{ product.name }}
+            .col-md-2
+                a.btn.btn-primary(href='#/products/{{ product._id }}/comment') Add comment
+        .row
+            .col-md-4
+                p
+                    b Seller:
+                    span.pull-right {{ product.seller.username }}
+                p
+                    b Price:
+                    span.pull-right {{ product.price | number: 2 }}
+                p
+                    b Published on:
+                    span.pull-right {{ product.published | date: 'dd.MM.yyyy HH:mm' }}
+                p: b Description:
+                span.pull-right {{ product.description }}
+            .col-md-6.text-center
+                img(src="/pictures/{{ product.image }}" width="50%")
+        .bs-component
+            .list-group
+                a.list-group-item(ng-repeat="comment in product.comments" href="")
+                    p.list-group-item-heading
+                        b Title:
+                        |  {{ comment.title }}
+                        em.pull-right ({{ comment.published | date: 'dd.MM.yyyy HH:mm' }})
+                    p.list-group-item-text
+                        b Comment:
+                        |  {{ comment.content }}

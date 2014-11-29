@@ -1,0 +1,32 @@
+.container(ng-controller='ProfileDetailsCtrl')
+    .col-md-1
+    .well.col-md-10.well-lg
+        .row
+            h3.col-md-10 {{ user.username }}
+                span(ng-show="user.isBanned")  [BANNED]
+            .col-md-2
+                a.btn.btn-primary(ng-show="currentUser._id === user._id" href="#/profile") Edit
+                a.btn.btn-primary(ng-show="isAuthorizedAdmin" ng-click="toggleBan()") {{ banToggleTitle }}
+                a.btn.btn-primary(ng-show="currentUser._id !== user._id" href='#/users/{{ user._id }}/message') Message
+        p: span(ng-if='user.roles' ng-repeat='role in user.roles')
+                |  {{ role }}
+        .row
+            p.col-md-4
+                b Full name:
+                |  {{ user.firstName + ' ' + user.lastName }}
+            p.col-md-4
+                b City:
+                |  {{ user.city }}
+            p.col-md-4
+                b Phone:
+                |  {{ user.phone }}
+        .bs-component
+            .list-group(ng-show="currentUser._id === user._id || isAuthorizedAdmin")
+                a.list-group-item(ng-repeat="message in user.messages" href="#/users/{{ message.from.userId }}")
+                    p.list-group-item-heading
+                        b from:
+                        |  {{ message.from.username }}
+                        em.pull-right ({{ message.dateSent | date: 'dd.MM.yyyy HH:mm' }})
+                    p.list-group-item-text
+                        b message:
+                        |  {{ message.content }}
