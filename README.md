@@ -1,7 +1,7 @@
 MEANStackTeamProject
 ====================
 
-MEAN Stack Team Project powerd by:
+MEAN Stack Team Project powered by:
 
 •	MongoDB, Mongoose
 
